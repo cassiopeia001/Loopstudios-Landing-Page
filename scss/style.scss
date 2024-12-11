@@ -1,0 +1,374 @@
+$font-primary: "Alata", sans-serif;
+$font-secondary: "Josefin Sans", sans-serif;
+
+$font-size-primary: 1rem;
+$font-medium: 2rem;
+$font-big: 2.5rem;
+$font-large: 3rem;
+
+$weight-regular: 300;
+$weight-bold: 400;
+
+$White: hsl(0, 0%, 100%);
+$Black: hsl(0, 0%, 0%);
+$Dark-Gray: hsl(0, 0%, 55%);
+$Very-Dark-Gray: hsl(0, 0%, 41%);
+
+@mixin fonts($family, $weight: $weight-regular){
+    font-family: $family;
+    font-weight: $weight;
+}
+@mixin display($direction, $alignement, $justify, $gap){
+    display: flex;
+    flex-direction: $direction;
+    align-items: $alignement;
+    justify-content: $justify;
+    gap: $gap;
+}
+*,*::before,*::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root{
+    font-size: 15px;
+}
+body{
+    min-height: 100vh;
+    background-color: $White;
+    @include fonts($font-primary, $weight-bold)
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: $White;
+    font-size: $font-size-primary;
+    padding-bottom: 1rem;
+    position: relative;
+
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: 1px;
+        left: 25%;
+        width: 50%;
+        height: 2px;
+        background-color: $White;
+        display: none;
+    }
+    &:hover::after,
+    &:focus::after{
+        display: block;
+    }
+    &:hover,
+    &:focus{
+        cursor: pointer;
+    }
+}
+h1{
+    color: $Black;
+    font-size: $font-big;
+    text-transform: uppercase;
+    @include fonts($font-secondary, $weight-regular)
+}
+button{
+    @include fonts($font-primary, $weight-regular);
+    font-size: $font-size-primary;
+}
+.header{
+    height: auto;
+    padding: 2rem 8rem;
+    position: relative;
+    &__background-img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        inset: 0;
+        object-fit: cover;
+        z-index: -1;
+        img {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        }
+    }   
+    &__nav{
+        @include display(row, center, space-between, 4rem);
+    }
+    &__logo{
+        height: 1.3rem;
+    }
+    &__list{
+        @include display(row, center, space-between, 1rem)
+    }
+    &__hamburger-icon{
+        border: none;
+        background: none;
+        display: none;
+        :hover{
+            cursor: pointer;
+        }
+    }
+    &__title{
+        width: min(100%, 25rem);
+        border: 1px solid $White;
+        padding: 1rem;
+        line-height: 1.1;
+        color: $White;
+        @include fonts($font-secondary, $weight-regular);
+        font-size: $font-large;
+        text-transform: uppercase;
+        margin: 3rem 0;
+    }
+}
+.main{
+    margin: 8rem;
+    margin-bottom: 10rem;
+    .article{
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr; 
+        grid-template-rows: 1fr 1fr 1fr;
+        margin-bottom: 6rem;
+        &__image{
+            grid-column: 1/3;
+            grid-row: 1/4;
+            img{
+                width: auto;
+            }
+        }
+        &__content{
+            background: $White;
+            grid-column: 2/4;
+            grid-row: 2/4;
+            z-index: 2;
+            @include display(column, center, flex-end, 0);   
+        }
+        &__text{
+            padding: 1rem 0rem 0rem 5rem;
+        }
+        &__par{
+            color: $Dark-Gray;
+            line-height: 1.7;
+            margin-top: 1.5rem;
+        }
+    }
+    &__section{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 4rem;
+    }
+    &__creations{
+        @include display(row, center, space-between, 0rem);
+    }
+    &__see-all-btn{
+        letter-spacing: 0.2rem;
+        text-transform: uppercase;
+        background: none;
+        border: 1px solid $Black;
+        padding: .5rem 2rem;
+
+        &:hover,
+        &:focus{
+            cursor: pointer;
+            color: $White;
+            background-color: $Black;
+        }
+    }
+    &__grid{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+    &__grid-item{
+        position: relative;
+        overflow: hidden;
+        button{
+            background: none;
+            border: none;
+            &:hover img, 
+            &:focus img{
+                cursor: pointer;
+                opacity: 0.4;
+            }
+            &:hover ~ .main__grid-text,
+            &:focus ~ .main__grid-text{
+                color: $Black;
+            }
+        }
+    }
+    &__grid-image{
+        width: 100%;
+        img{
+            width: 100%;
+        }
+    }
+    &__grid-text{
+        position: absolute;
+        bottom: 5%;
+        left: 10%;
+        width: 60%;
+        color: $White;
+        @include fonts($font-secondary, $weight-regular);
+        font-size: $font-medium;
+        text-transform: uppercase;   
+    }   
+}
+.footer{
+    background-color: $Black;
+    padding: 2rem 8rem;
+    @include display(row, center, space-between, 2rem);
+    width: 100%;
+    &__nav{
+        @include display(column, flex-start, flex-start, 1.5rem);
+    }
+    &__logo{
+        height: 1.3rem;
+    }
+    &__list{
+        @include display(row, center, space-between, 3rem);
+    }
+    &__nav-socials{
+        @include display(column, flex-end, flex-end, 1.5rem);
+    }
+    &__list-socials{
+        @include display(row, center, space-between, 1rem);
+    }
+    &__link-btns{
+        border: none;
+        background: none;
+        img{
+            padding-bottom: 0.5rem;
+        }
+        &:hover, &:focus{
+            cursor: pointer;
+            img{
+                border-bottom: 2px solid $White;
+            }
+        }
+    }
+    &__text{
+        color: $Very-Dark-Gray;
+    }
+}
+@media screen and (max-width:1000px){
+    .header{
+        padding: 2rem 5rem;
+    }
+    .main{
+        margin: 5rem 5rem 10rem 5rem;
+        .article{
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            gap: 2rem;
+            margin-bottom: 10rem;
+            &__image{
+                grid-column: 1/1;
+                grid-row: 1/2;
+                img{
+                    width: 100%;
+                }
+            }
+            &__content{
+                height: auto;
+                grid-column: 1/1;
+                grid-row: 2/3;
+                justify-content: start;
+            }
+            &__text{
+                padding: 0;
+                text-align: center;
+            }
+        }
+        &__grid{
+            grid-template-columns: 1fr 1fr;
+            justify-items: center 
+        }
+    }
+    .footer{
+        flex-direction: column;
+        gap: 2rem;
+        &__nav, &__nav-socials{
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+}
+@media screen and (max-width: 650px) {
+    .header{
+        min-height: 40rem;
+        padding: 3rem 2rem;
+        &__title{
+            width: 100%;
+            margin-top: 10rem;
+        }
+        &__icons{
+            width: 100%;
+            @include display(row, center, space-between, 1rem);
+        }
+        &__list{
+            display: none;
+            &.active{
+                @include display(column, flex-start, flex-start, 1.5rem);
+            }
+        }
+        &__links{
+            @include fonts($font-secondary, $weight-regular);
+            text-transform: uppercase;
+            font-size: $font-medium;
+        }
+        &__nav{
+            &.active{
+                position: fixed;
+                background-color: $Black;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1000;
+                padding: 3rem 2rem;
+                @include display(column, flex-start, start, 10rem);
+            }
+        }    
+        &__hamburger-icon{
+            display: block;
+        }
+    }
+    .main{
+        margin: 5rem 2rem;
+        margin-bottom: 12rem;
+        position: relative;
+        &__creations{
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        &__see-all-btn{
+            position: absolute;
+            bottom: -5rem;
+        }
+        &__grid{
+            width: 100%;
+            grid-template-columns: 1fr;
+        }
+        &__grid-text{
+            bottom: 15%;
+            left: 5%;
+        }
+    }
+    .footer{
+        gap: 3rem;
+        padding: 2rem;
+        &__nav{
+            gap: 2rem;
+        }
+        &__list{
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+}
