@@ -45,7 +45,7 @@ a:hover, a:focus {
 
 h1 {
   color: hsl(0, 0%, 0%);
-  font-size: 2.5rem;
+  font-size: 3rem;
   text-transform: uppercase;
   font-family: "Josefin Sans", sans-serif;
   font-weight: 300;
@@ -103,16 +103,17 @@ button {
   cursor: pointer;
 }
 .header__title {
-  width: min(100%, 25rem);
+  width: min(100%, 35rem);
   border: 1px solid hsl(0, 0%, 100%);
   padding: 1rem;
   line-height: 1.1;
   color: hsl(0, 0%, 100%);
   font-family: "Josefin Sans", sans-serif;
   font-weight: 300;
-  font-size: 3rem;
+  font-size: 4rem;
   text-transform: uppercase;
-  margin: 3rem 0;
+  word-wrap: break-word;
+  margin: 5rem 0;
 }
 
 .main {
